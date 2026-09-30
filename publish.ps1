@@ -45,7 +45,7 @@ if ($LASTEXITCODE -ne 0) {
         --homepage $Homepage `
         --push
 } else {
-    $Remote = git remote get-url origin 2>$null
+    $Remote = git remote get-url origin 2>$null; if ($LASTEXITCODE -ne 0) { $Remote = $null }
     if (-not $Remote) {
         git remote add origin "https://github.com/ZenxPrince/$Repo.git"
     }
@@ -83,4 +83,5 @@ Write-Host 'Portfolio:  https://zenxprince.github.io/' -ForegroundColor White
 Write-Host ''
 Write-Host 'GitHub Actions will perform the Pages deployment.' -ForegroundColor Cyan
 Write-Host 'Check the Actions tab if the site is not live immediately.' -ForegroundColor Yellow
+
 
